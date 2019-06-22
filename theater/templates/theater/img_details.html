@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/img_details.css' %}">
+{% endblock %}
+{% block index %}active{% endblock %}
+{% block title %}{% endblock %}
+{% block panel-body-left %}
+   <h3> {{ img.title }}</h3>
+    <img src="{{ img.media_file.url }}">
+{% endblock %}
+{% block panel-body-right %}
+<div class="hidden-xs col-sm-4 col-md-3 col-lg-2">
+    <div class="panel panel-default">
+        <div class="panel-heading">分类</div>
+        <div class="panel-body">
+            <ol>
+                {% for tag in tags %}
+                    <li><a href="{% url 'img_same_tags' tag.id %}">{{ tag }}</a></li>
+                {% empty %}
+                    <p>暂无标签</p>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+</div>
+{% endblock %}

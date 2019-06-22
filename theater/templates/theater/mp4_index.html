@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block index %}active{% endblock %}
+{% block title %}{% endblock %}
+{% block panel-body-left %}
+    <ol>
+        {% for mp4 in MP4s %}
+            <li><a href="{% url 'mp4_details' mp4.id %}">{{ mp4.title }}</a></li>
+        {% empty %}
+            <p>暂无小视屏</p>
+        {% endfor %}
+    </ol>
+{% endblock %}
+{% block panel-body-right %}
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+        <link href="{% static 'css/mp4_details.css' %}" rel="stylesheet">
+{% endblock %}
+{% block index %}active{% endblock %}
+{% block title %}{% endblock %}
+{% block panel-body-left %}
+    <h3> {{ MP4.title }}</h3>
+    <video src="{{ MP4.media_file.url }}" controls="controls"></video>
+{% endblock %}
+{% block panel-body-right %}
+    <div class="hidden-xs col-sm-4 col-md-3 col-lg-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    分类
+                </div>
+                <div class="panel-body">
+                    <ol>
+                        {% for tag in tags %}
+                            <li><a href="{% url 'mp4_same_tags' tag.id %}">{{ tag }}</a></li>
+                        {% empty %}
+                            <p>暂无标签</p>
+                        {% endfor %}
+                    </ol>
+                </div>
+        </div>
+    </div>
+{#    <div class="panel-heading">分类</div>#}
+{#        <div class="panel-body">#}
+{#		    <div class="begin"><span>#}
+{##}
+{#                </span>#}
+{#                <b>文章</b>推荐#}
+{#            </div>#}
+{#		    <div class="paper-info">#}
+{#			    {% if pre %}#}
+{#			        <p class="pre-paper"> <a href="{% url 'mp4_details' pre.pk %}"><span>上一篇：</span>{{ pre.title }}</a> </p>#}
+{#			    {% else %}#}
+{#			        <p class="pre-paper"> 上一篇：没有了</p>#}
+{#			    {% endif %}#}
+{#			    {% if next %}#}
+{#			        <p class="next-paper"><a href="{% url 'mp4_details' next.pk %}"><span>下一篇：</span>{{ next.title }}</a></p>#}
+{#			    {% else %}#}
+{#			        <p class="next-paper"> 下一篇：没有了</p>#}
+{#			    {% endif %}#}
+{#		    </div>#}
+{#        </div>#}
+{#    </div>#}
+{% endblock %}
